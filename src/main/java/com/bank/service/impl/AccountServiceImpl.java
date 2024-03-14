@@ -4,9 +4,6 @@ import com.bank.enums.AccountType;
 import com.bank.model.Account;
 import com.bank.repository.AccountRepository;
 import com.bank.service.AccountService;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -41,7 +38,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<Account> listAllAccounts() {
-        return listAllAccounts();
+        return accountRepository.findAllAccounts();
     }
 
 }

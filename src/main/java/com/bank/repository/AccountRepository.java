@@ -1,7 +1,6 @@
 package com.bank.repository;
 
 import com.bank.model.Account;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,4 +13,10 @@ public class AccountRepository {
         accountList.add(account);
         return account;
     }
+
+    public List<Account> findAllAccounts() {
+        return accountList;
+    }
+
+
 }

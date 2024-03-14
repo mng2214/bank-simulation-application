@@ -1,8 +1,6 @@
 package com.bank.service;
-
 import com.bank.enums.AccountType;
 import com.bank.model.Account;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
