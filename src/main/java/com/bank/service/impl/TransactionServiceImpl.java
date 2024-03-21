@@ -1,5 +1,7 @@
 package com.bank.service.impl;
 
+import com.bank.enums.AccountType;
+import com.bank.exception.AccountOwnershipException;
 import com.bank.model.Account;
 import com.bank.model.Transaction;
 import com.bank.repository.AccountRepository;
@@ -9,6 +11,7 @@ import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.nio.channels.AcceptPendingException;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -31,8 +34,16 @@ public class TransactionServiceImpl implements TransactionService {
         if both accounts are checking? if not is saving then need to be same user id
          */
         validateAccount(sender, receiver);
-
+        checkAccountOwnership(sender, receiver);
         return null;
+    }
+
+    @SneakyThrows
+    private void checkAccountOwnership(Account sender, Account receiver) {
+        if ((sender.getAccountType().equals(AccountType.SAVING) || receiver.getAccountType().equals(AccountType.SAVING))
+                && !sender.getUserId().equals(receiver.getUserId())) {
+            throw new AccountOwnershipException("If one of the account is saving, or user must mbe the same for sender and receiver ");
+        }
     }
 
     @SneakyThrows
@@ -49,9 +60,8 @@ public class TransactionServiceImpl implements TransactionService {
             throw new BadRequestException("Sender account needs to be different then receiver account");
         }
 
-        findAccountById (sender.getId());
-        findAccountById (receiver.getId());
-
+        findAccountById(sender.getId());
+        findAccountById(receiver.getId());
 
         // if accounts are the same throw Exception. Accounts needs to be different
     }
