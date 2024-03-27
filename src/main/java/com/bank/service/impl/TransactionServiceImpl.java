@@ -58,12 +58,10 @@ public class TransactionServiceImpl implements TransactionService {
 
             // save it to db and return it
 
-
             return transactionRepository.save(transaction);
         } else {
-            throw new UnderConstructionException("If one of the account is saving, user must be the same for sender and receiver");
+            throw new UnderConstructionException("Account is under construction");
         }
-
     }
 
     private void executeBalanceAndUpdateIfRequired(BigDecimal amount, Account sender, Account receiver) {
