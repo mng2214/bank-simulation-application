@@ -3,6 +3,7 @@ package com.bank.service.impl;
 import com.bank.enums.AccountType;
 import com.bank.exception.AccountBalanceException;
 import com.bank.exception.AccountOwnershipException;
+import com.bank.exception.UnderConstructionException;
 import com.bank.model.Account;
 import com.bank.model.Transaction;
 import com.bank.repository.AccountRepository;
@@ -10,6 +11,7 @@ import com.bank.repository.TransactionRepository;
 import com.bank.service.TransactionService;
 import lombok.SneakyThrows;
 import org.apache.coyote.BadRequestException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -20,6 +22,9 @@ import java.util.UUID;
 
 @Component
 public class TransactionServiceImpl implements TransactionService {
+
+    @Value("${under_construction}")
+    private boolean underConstruction;
     private final AccountRepository accountRepository;
     private final TransactionRepository transactionRepository;
 
@@ -30,36 +35,41 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public Transaction makeTransfer(Account sender, Account receiver, BigDecimal amount, Date creationDate, String message) {
-        /*
+        if (!underConstruction) {
+    /*
         list of validations:
         if sender/receiver is null?
         if sender/receiver same account
         if sender have enough balance
         if both accounts are checking? if not is saving then need to be same user id
          */
-        validateAccount(sender, receiver);
-        checkAccountOwnership(sender, receiver);
-        executeBalanceAndUpdateIfRequired(amount, sender, receiver);
-        // after all validations are complete we need to create transaction object and save data
+            validateAccount(sender, receiver);
+            checkAccountOwnership(sender, receiver);
+            executeBalanceAndUpdateIfRequired(amount, sender, receiver);
+            // after all validations are complete we need to create transaction object and save data
 
-        Transaction transaction = Transaction.builder()
-                .sender(sender.getId())
-                .amount(amount)
-                .receiver(receiver.getId())
-                .message(message)
-                .createDate(creationDate)
-                .build();
+            Transaction transaction = Transaction.builder()
+                    .sender(sender.getId())
+                    .amount(amount)
+                    .receiver(receiver.getId())
+                    .message(message)
+                    .createDate(creationDate)
+                    .build();
 
-        // save it to db and return it
+            // save it to db and return it
 
 
-        return transactionRepository.save(transaction);
+            return transactionRepository.save(transaction);
+        } else {
+            throw new UnderConstructionException("If one of the account is saving, user must be the same for sender and receiver");
+        }
+
     }
 
     private void executeBalanceAndUpdateIfRequired(BigDecimal amount, Account sender, Account receiver) {
         if (checkSenderBalance(sender, amount)) {
-           sender.setBalance(sender.getBalance().subtract(amount));
-           receiver.setBalance(receiver.getBalance().add(amount));
+            sender.setBalance(sender.getBalance().subtract(amount));
+            receiver.setBalance(receiver.getBalance().add(amount));
         } else {
             throw new AccountBalanceException("Insufficient funds. Account balance is too low");
         }
@@ -103,7 +113,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<Transaction> findAllTransaction() {
-        return null;
+        return transactionRepository.findAll();
     }
 
 }
