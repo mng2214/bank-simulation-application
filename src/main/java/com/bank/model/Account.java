@@ -12,7 +12,6 @@ import java.util.UUID;
 @Builder
 public class Account {
 
-
     private UUID id;
     private BigDecimal balance;
     private AccountType accountType;
