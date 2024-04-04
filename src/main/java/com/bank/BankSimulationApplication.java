@@ -21,8 +21,8 @@ public class BankSimulationApplication {
         AccountService accountService = container.getBean(AccountService.class);
         TransactionService transactionService = container.getBean(TransactionService.class);
 
-     Account sender = accountService.createNewAccount(BigDecimal.valueOf(70.00), new Date(), AccountType.CHECKING, 1L);
-//        Account receiver = accountService.createNewAccount(BigDecimal.valueOf(30.00), new Date(), AccountType.CHECKING, 2L);
+        Account sender = accountService.createNewAccount(BigDecimal.valueOf(70.00), new Date(), AccountType.CHECKING, 1L);
+        Account receiver = accountService.createNewAccount(BigDecimal.valueOf(30.00), new Date(), AccountType.CHECKING, 2L);
 //       // Account sender2 = null;
 //      accountService.listAllAccounts().forEach(System.out::println);
 //

@@ -1,5 +1,7 @@
 package com.bank.controller;
 
+import com.bank.enums.AccountType;
+import com.bank.model.Account;
 import com.bank.repository.AccountRepository;
 import com.bank.service.AccountService;
 import com.bank.service.impl.AccountServiceImpl;
@@ -23,4 +25,12 @@ public class AccountController {
         model.addAttribute("accountList", accountService.listAllAccounts());
         return "account/index";
     }
+
+    @GetMapping("/create-form")
+    public String getCreateFormPage(Model model){
+        model.addAttribute("account", Account.builder().build());
+        model.addAttribute("accountTypes", AccountType.values());
+        return "account/create-account";
+    }
+
 }
