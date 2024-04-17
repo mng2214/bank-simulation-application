@@ -10,13 +10,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Date;
+import java.util.UUID;
+import java.util.logging.Logger;
 
 @Controller
 public class AccountController {
-
+    private static final Logger logger = Logger.getLogger(AccountController.class.getName());
     private final AccountService accountService;
 
     @Autowired
@@ -42,6 +45,13 @@ public class AccountController {
         System.out.println(account);
         Account newAccount = accountService.createNewAccount(account.getBalance(), new Date(), account.getAccountType(), account.getUserId());
         System.out.println(newAccount);
+        return "redirect:/index";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteAccount(@PathVariable("id") UUID id) {
+        logger.info("Deleted Account UD : " + id);
+        accountService.deleteAccountById(id);
         return "redirect:/index";
     }
 }
