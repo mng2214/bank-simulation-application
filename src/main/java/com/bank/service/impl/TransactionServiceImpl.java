@@ -116,7 +116,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<Transaction> getLast10Transactions() {
+    public List<Transaction> last10Transactions() {
         return transactionRepository.getLast10Transactions();
     }
 

@@ -22,7 +22,7 @@ public class TransactionController {
     public String getMakeTransfer(Model model) {
         model.addAttribute("transaction", Transaction.builder().build());
         model.addAttribute("accounts",accountService.listAllAccounts());
-        model.addAttribute("lastTransactions", transactionService.getLast10Transactions());
+        model.addAttribute("lastTransactions", transactionService.last10Transactions());
         return "transaction/make-transfer";
     }
 }
