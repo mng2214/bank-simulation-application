@@ -6,6 +6,7 @@ import com.bank.model.Transaction;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,5 +23,11 @@ public class TransactionRepository {
         return transactionList;
     }
 
+    public List<Transaction> getLast10Transactions() {
+        return findAll().stream()
+                .sorted(Comparator.comparing(Transaction::getCreateDate).reversed())
+                .limit(10)
+                .toList();
+    }
 
 }

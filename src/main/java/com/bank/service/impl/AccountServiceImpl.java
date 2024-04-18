@@ -47,15 +47,17 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void deleteAccountById(UUID id) {
-//        listAllAccounts().stream()
-//                .filter(a->a.getId().equals(id))
-//                .forEach(a->a.setAccountStatus(AccountStatus.DELETED));
         accountRepository.findById(id).setAccountStatus(AccountStatus.DELETED);
     }
 
     @Override
     public void activateAccount(UUID id) {
         accountRepository.findById(id).setAccountStatus(AccountStatus.ACTIVE);
+    }
+
+    @Override
+    public List<Account> getSenderAccounts() {
+        return null;
     }
 
 

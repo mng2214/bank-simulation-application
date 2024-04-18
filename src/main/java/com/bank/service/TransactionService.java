@@ -12,4 +12,5 @@ public interface TransactionService {
 
     List<Transaction> findAllTransaction ();
 
+    List<Transaction> getLast10Transactions();
 }
