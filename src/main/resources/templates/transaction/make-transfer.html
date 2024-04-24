@@ -66,12 +66,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr th:each="trans : ${lastTransactions}">
+                        <td th:text="${trans.sender}"></td>
+                        <td th:text="${trans.receiver}"></td>
+                        <td th:text="${trans.amount}"></td>
+<!--                        <td th:text="${#temporals.format(trans.createDate ,'MM.dd.yyyy')}"></td>-->
+                        <td th:text="${'11-11-1111'}"></td>
+                        <td th:text="${trans.message}"></td>
                     </tr>
                     </tbody>
                 </table>

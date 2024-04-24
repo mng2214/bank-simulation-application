@@ -1,5 +1,6 @@
 package com.bank.service.impl;
 
+import com.bank.controller.AccountController;
 import com.bank.enums.AccountType;
 import com.bank.exception.AccountBalanceException;
 import com.bank.exception.AccountOwnershipException;
@@ -19,10 +20,13 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Component
 public class TransactionServiceImpl implements TransactionService {
+
+    private static final Logger logger = Logger.getLogger(TransactionServiceImpl.class.getName());
 
     @Value("${under_construction}")
     private boolean underConstruction;
@@ -58,6 +62,10 @@ public class TransactionServiceImpl implements TransactionService {
                     .build();
 
             // save it to db and return it
+
+
+            logger.info(String.format("Amount of $%s From : %s To : %s Has been sent.%nTransaction completed",
+                    transaction.getAmount(), sender.getId(), receiver.getId()));
 
             return transactionRepository.save(transaction);
         } else {

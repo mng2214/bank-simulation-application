@@ -2,6 +2,7 @@ package com.bank.service.impl;
 
 import com.bank.enums.AccountStatus;
 import com.bank.enums.AccountType;
+import com.bank.exception.RecordNotFoundException;
 import com.bank.model.Account;
 import com.bank.repository.AccountRepository;
 import com.bank.service.AccountService;
@@ -58,6 +59,11 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public List<Account> getSenderAccounts() {
         return null;
+    }
+
+    @Override
+    public Account findById(UUID id) {
+        return accountRepository.findById(id);
     }
 
 
