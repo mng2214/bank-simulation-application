@@ -17,7 +17,7 @@ public class Account {
     private UUID id;
     private BigDecimal balance;
     private AccountType accountType;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+  //  @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date creationDate;
     private Long userId;
     private AccountStatus accountStatus;

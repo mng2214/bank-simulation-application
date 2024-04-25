@@ -66,17 +66,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="trans : ${lastTransactions}">
-                        <td th:text="${trans.sender}"></td>
-                        <td th:text="${trans.receiver}"></td>
-                        <td th:text="${trans.amount}"></td>
-<!--                        <td th:text="${#temporals.format(trans.createDate ,'MM.dd.yyyy')}"></td>-->
-                        <td th:text="${'11-11-1111'}"></td>
-                        <td th:text="${trans.message}"></td>
+                    <tr th:each="lTransaction : ${lastTransactions}" >
+                        <td th:text="${lTransaction.getSender()}"></td>
+                        <td th:text="${lTransaction.getReceiver()}"></td>
+                        <td th:text="${lTransaction.getAmount()}"></td>
+                        <td th:text="${lTransaction.getCreateDate()}"></td>
+                        <td th:text="${lTransaction.getMessage()}"></td>
                     </tr>
                     </tbody>
                 </table>
-                <p class="my-5"><a href="#" class="btn btn-primary">Home Page</a></p>
+                <p class="my-5"><a th:href="@{/index}" class="btn btn-primary">Home Page</a></p>
             </div>
         </div>
     </div>

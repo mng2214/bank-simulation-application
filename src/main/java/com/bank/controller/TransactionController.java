@@ -57,7 +57,7 @@ public class TransactionController {
         Account sender = accountService.findById(transaction.getSender());
         Account receiver = accountService.findById(transaction.getReceiver());
         BigDecimal amount = transaction.getAmount();
-        Date createDate = transaction.getCreateDate();
+        Date createDate = new Date();
         String message = transaction.getMessage();
         transactionService.makeTransfer(sender, receiver, amount, createDate, message);
         return "redirect:/make-transfer";
