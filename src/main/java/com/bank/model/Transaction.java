@@ -23,7 +23,7 @@ public class Transaction {
     @NotNull
     private BigDecimal amount;
     @Size(min = 2, max = 255)
-    @Pattern(regexp = "^[a-zA-Z0-9]*$\"")
+    @Pattern(regexp = "^[a-zA-Z0-9]*$")
     private String message;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createDate;

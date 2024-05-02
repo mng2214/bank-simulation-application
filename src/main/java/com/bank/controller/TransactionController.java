@@ -1,6 +1,5 @@
 package com.bank.controller;
 
-import com.bank.enums.AccountType;
 import com.bank.model.Account;
 import com.bank.model.Transaction;
 import com.bank.service.AccountService;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
