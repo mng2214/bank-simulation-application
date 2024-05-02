@@ -5,9 +5,12 @@ import com.bank.model.Account;
 import com.bank.repository.AccountRepository;
 import com.bank.service.AccountService;
 import com.bank.service.impl.AccountServiceImpl;
+import jakarta.validation.Valid;
+import jakarta.validation.executable.ValidateOnExecution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,10 +44,15 @@ public class AccountController {
     }
 
     @PostMapping("/create")
-    public String saved(@ModelAttribute("account") Account account) {
-        System.out.println(account);
+    public String saved(@Valid @ModelAttribute("account") Account account, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("accountTypes", AccountType.values());
+            logger.warning(bindingResult.getAllErrors().toString());
+            return "account/create-account";
+        }
+        logger.info(account.toString());
         Account newAccount = accountService.createNewAccount(account.getBalance(), new Date(), account.getAccountType(), account.getUserId());
-        System.out.println(newAccount);
+        logger.info(newAccount.toString());
         return "redirect:/index";
     }
 
@@ -56,7 +64,7 @@ public class AccountController {
     }
 
     @GetMapping("/activate/{id}")
-    public String activateAccount (@PathVariable("id") UUID id) {
+    public String activateAccount(@PathVariable("id") UUID id) {
         logger.info("Activated Account UD : " + id);
         accountService.activateAccount(id);
         return "redirect:/index";
