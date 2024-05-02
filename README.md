@@ -4,10 +4,8 @@ Throughout this project, Lombok was incorporated for reducing boilerplate code w
 
 Technologies Used:
 -Java SDK version 17
--Jakarta EE
+-Spring Boot
 -Spring MVC
--Lombok
--Getting Started
 -HTML
 -ThymeLeaf
 
