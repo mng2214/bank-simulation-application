@@ -4,21 +4,20 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.UUID;
 
-@Data
-@Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class TransactionDTO {
-    @NotNull
-    private UUID sender;
-    @NotNull
-    private UUID receiver;
+   // @NotNull
+    private Long sender;
+  //  @NotNull
+    private Long receiver;
     @Positive
     @NotNull
     private BigDecimal amount;
