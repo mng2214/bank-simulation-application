@@ -1,7 +1,7 @@
 package com.bank.service;
 
-import com.bank.dto.Account;
-import com.bank.dto.Transaction;
+import com.bank.dto.AccountDTO;
+import com.bank.dto.TransactionDTO;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -9,11 +9,11 @@ import java.util.UUID;
 
 public interface TransactionService {
 
-    Transaction makeTransfer (Account sender, Account receiver, BigDecimal amount, Date creationDate, String message);
+    TransactionDTO makeTransfer (AccountDTO sender, AccountDTO receiver, BigDecimal amount, Date creationDate, String message);
 
-    List<Transaction> findAllTransaction ();
+    List<TransactionDTO> findAllTransaction ();
 
-    List<Transaction> last10Transactions();
+    List<TransactionDTO> last10Transactions();
 
-    List<Transaction> findTransactionListById(UUID id);
+    List<TransactionDTO> findTransactionListById(UUID id);
 }

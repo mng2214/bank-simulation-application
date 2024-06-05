@@ -1,10 +1,9 @@
 package com.bank.controller;
 
+import com.bank.dto.AccountDTO;
 import com.bank.enums.AccountType;
-import com.bank.dto.Account;
 import com.bank.service.AccountService;
 import jakarta.validation.Valid;
-import jakarta.validation.executable.ValidateOnExecution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,21 +35,21 @@ public class AccountController {
 
     @GetMapping("/create-form")
     public String getCreateFormPage(Model model) {
-        model.addAttribute("account", Account.builder().build());
+        model.addAttribute("account", AccountDTO.builder().build());
         model.addAttribute("accountTypes", AccountType.values());
         return "account/create-account";
     }
 
     @PostMapping("/create")
-    public String saved(@Valid @ModelAttribute("account") Account account, BindingResult bindingResult, Model model) {
+    public String saved(@Valid @ModelAttribute("account") AccountDTO accountDTO, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("accountTypes", AccountType.values());
             logger.warning(bindingResult.getAllErrors().toString());
             return "account/create-account";
         }
-        logger.info(account.toString());
-        Account newAccount = accountService.createNewAccount(account.getBalance(), new Date(), account.getAccountType(), account.getUserId());
-        logger.info(newAccount.toString());
+        logger.info(accountDTO.toString());
+        AccountDTO newAccountDTO = accountService.createNewAccount(accountDTO.getBalance(), new Date(), accountDTO.getAccountType(), accountDTO.getUserId());
+        logger.info(newAccountDTO.toString());
         return "redirect:/index";
     }
 

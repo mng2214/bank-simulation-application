@@ -1,7 +1,7 @@
 package com.bank.controller;
 
-import com.bank.dto.Account;
-import com.bank.dto.Transaction;
+import com.bank.dto.AccountDTO;
+import com.bank.dto.TransactionDTO;
 import com.bank.service.AccountService;
 import com.bank.service.TransactionService;
 import jakarta.validation.Valid;
@@ -33,33 +33,33 @@ public class TransactionController {
 
     @GetMapping("/make-transfer")
     public String getMakeTransfer(Model model) {
-        model.addAttribute("transaction", Transaction.builder().build());
+        model.addAttribute("transaction", TransactionDTO.builder().build());
         model.addAttribute("accounts", accountService.listAllAccounts());
         model.addAttribute("lastTransactions", transactionService.last10Transactions());
         return "transaction/make-transfer";
     }
 
     @PostMapping("/transfer")
-    public String completeTransfer(@Valid @ModelAttribute("transaction") Transaction transaction, BindingResult bindingResult, Model model) {
+    public String completeTransfer(@Valid @ModelAttribute("transaction") TransactionDTO transactionDTO, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("accounts", accountService.listAllAccounts());
             model.addAttribute("lastTransactions", transactionService.last10Transactions());
             logger.warning(bindingResult.getAllErrors().toString());
             return "transaction/make-transfer";
         }
-        Account sender = accountService.findById(transaction.getSender());
-        Account receiver = accountService.findById(transaction.getReceiver());
-        BigDecimal amount = transaction.getAmount();
+        AccountDTO sender = accountService.findById(transactionDTO.getSender());
+        AccountDTO receiver = accountService.findById(transactionDTO.getReceiver());
+        BigDecimal amount = transactionDTO.getAmount();
         Date createDate = new Date();
-        String message = transaction.getMessage();
+        String message = transactionDTO.getMessage();
         transactionService.makeTransfer(sender, receiver, amount, createDate, message);
         return "redirect:/make-transfer";
     }
 
     @GetMapping("/transactions/{id}")
     public String getTransactions(@PathVariable UUID id, Model model) {
-        List<Transaction> transactionListById = transactionService.findTransactionListById(id);
-        model.addAttribute("transactions", transactionListById);
+        List<TransactionDTO> transactionDTOListById = transactionService.findTransactionListById(id);
+        model.addAttribute("transactions", transactionDTOListById);
         return "transaction/transactions";
     }
 

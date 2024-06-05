@@ -1,7 +1,7 @@
 package com.bank.repository;
 
+import com.bank.dto.AccountDTO;
 import com.bank.exception.RecordNotFoundException;
-import com.bank.dto.Account;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,19 +12,19 @@ import java.util.UUID;
 public class AccountRepository {
 
     // class will be representing db
-    public static List<Account> accountList = new ArrayList<>();
+    public static List<AccountDTO> accountDTOList = new ArrayList<>();
 
-    public Account save(Account account) {
-        accountList.add(account);
-        return account;
+    public AccountDTO save(AccountDTO accountDTO) {
+        accountDTOList.add(accountDTO);
+        return accountDTO;
     }
 
 
-    public List<Account> findAllAccounts() {
-        return accountList;
+    public List<AccountDTO> findAllAccounts() {
+        return accountDTOList;
     }
 
-    public Account findById(UUID id) {
+    public AccountDTO findById(UUID id) {
         return findAllAccounts().stream()
                 .filter(account -> account.getId().equals(id))
                 .findFirst()
