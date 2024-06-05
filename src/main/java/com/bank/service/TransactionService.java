@@ -1,7 +1,7 @@
 package com.bank.service;
 
-import com.bank.model.Account;
-import com.bank.model.Transaction;
+import com.bank.dto.Account;
+import com.bank.dto.Transaction;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;

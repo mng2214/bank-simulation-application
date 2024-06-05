@@ -2,8 +2,7 @@ package com.bank.service.impl;
 
 import com.bank.enums.AccountStatus;
 import com.bank.enums.AccountType;
-import com.bank.exception.RecordNotFoundException;
-import com.bank.model.Account;
+import com.bank.dto.Account;
 import com.bank.repository.AccountRepository;
 import com.bank.service.AccountService;
 import org.springframework.stereotype.Component;

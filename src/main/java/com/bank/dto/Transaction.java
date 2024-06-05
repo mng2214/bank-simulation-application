@@ -1,4 +1,4 @@
-package com.bank.model;
+package com.bank.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;

@@ -1,7 +1,7 @@
 package com.bank;
 
 import com.bank.enums.AccountType;
-import com.bank.model.Account;
+import com.bank.dto.Account;
 import com.bank.service.AccountService;
 import com.bank.service.TransactionService;
 import org.springframework.boot.SpringApplication;

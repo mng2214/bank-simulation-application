@@ -1,4 +1,4 @@
-package com.bank.model;
+package com.bank.dto;
 
 import com.bank.enums.AccountStatus;
 import com.bank.enums.AccountType;
@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;

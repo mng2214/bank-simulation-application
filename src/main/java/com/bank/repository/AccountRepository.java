@@ -1,8 +1,7 @@
 package com.bank.repository;
 
-import com.bank.exception.BadRequestException;
 import com.bank.exception.RecordNotFoundException;
-import com.bank.model.Account;
+import com.bank.dto.Account;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

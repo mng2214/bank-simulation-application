@@ -1,12 +1,11 @@
 package com.bank.service.impl;
 
-import com.bank.controller.AccountController;
 import com.bank.enums.AccountType;
 import com.bank.exception.AccountBalanceException;
 import com.bank.exception.AccountOwnershipException;
 import com.bank.exception.UnderConstructionException;
-import com.bank.model.Account;
-import com.bank.model.Transaction;
+import com.bank.dto.Account;
+import com.bank.dto.Transaction;
 import com.bank.repository.AccountRepository;
 import com.bank.repository.TransactionRepository;
 import com.bank.service.TransactionService;
@@ -16,7 +15,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;

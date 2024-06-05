@@ -1,14 +1,11 @@
 package com.bank.repository;
 
-import com.bank.exception.RecordNotFoundException;
-import com.bank.model.Account;
-import com.bank.model.Transaction;
+import com.bank.dto.Transaction;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.UUID;
 
 @Component
 public class TransactionRepository {

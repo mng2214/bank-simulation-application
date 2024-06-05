@@ -1,10 +1,8 @@
 package com.bank.controller;
 
 import com.bank.enums.AccountType;
-import com.bank.model.Account;
-import com.bank.repository.AccountRepository;
+import com.bank.dto.Account;
 import com.bank.service.AccountService;
-import com.bank.service.impl.AccountServiceImpl;
 import jakarta.validation.Valid;
 import jakarta.validation.executable.ValidateOnExecution;
 import org.springframework.beans.factory.annotation.Autowired;
