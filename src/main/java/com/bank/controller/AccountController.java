@@ -18,7 +18,9 @@ import java.util.logging.Logger;
 
 @Controller
 public class AccountController {
+
     private static final Logger logger = Logger.getLogger(AccountController.class.getName());
+
     private final AccountService accountService;
 
     @Autowired
@@ -47,8 +49,8 @@ public class AccountController {
             return "account/create-account";
         }
         logger.info(accountDTO.toString());
-        AccountDTO newAccountDTO = accountService.createNewAccount(accountDTO.getBalance(), new Date(), accountDTO.getAccountType(), accountDTO.getUserId());
-        logger.info(newAccountDTO.toString());
+        accountService.createNewAccount(accountDTO);
+        //logger.info(newAccountDTO.toString());
         return "redirect:/index";
     }
 

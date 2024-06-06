@@ -50,13 +50,7 @@ public class TransactionServiceImpl implements TransactionService {
             executeBalanceAndUpdateIfRequired(amount, sender, receiver);
             // after all validations are complete we need to create transaction object and save data
 
-            TransactionDTO transactionDTO = TransactionDTO.builder()
-                    .sender(sender.getId())
-                    .amount(amount)
-                    .receiver(receiver.getId())
-                    .message(message)
-                    .createDate(creationDate)
-                    .build();
+            TransactionDTO transactionDTO = new TransactionDTO();
 
             // save it to db and return it
 
@@ -128,7 +122,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public List<TransactionDTO> findTransactionListById(Long id) {
         return transactionRepository.findAll()
-                .stream().filter(t->t.getSender().equals(id) || t.getReceiver().equals(id))
+                .stream().filter(t -> t.getSender().equals(id) || t.getReceiver().equals(id))
                 .collect(Collectors.toList());
     }
 
