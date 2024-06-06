@@ -16,7 +16,7 @@ import java.util.Date;
 public class TransactionDTO {
  // @NotNull
   private AccountDTO sender;
-//  @NotNull
+  // @NotNull
   private AccountDTO receiver;
   @Positive
   @NotNull
