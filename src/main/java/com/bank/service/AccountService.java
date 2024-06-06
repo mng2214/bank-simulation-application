@@ -6,19 +6,19 @@ import com.bank.enums.AccountType;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 public interface AccountService {
-    AccountDTO createNewAccount(BigDecimal balance, Date createDate, AccountType accountType, Long userId);
+
+    void createNewAccount(AccountDTO accountDTO);
 
     List<AccountDTO> listAllAccounts();
 
-    void deleteAccountById(UUID id);
+    void deleteAccountById(Long id);
 
-    void activateAccount(UUID id);
+    void activateAccount(Long id);
 
     List<AccountDTO> getSenderAccounts();
 
-    AccountDTO findById(UUID id);
+    AccountDTO findById(Long id);
 }
 

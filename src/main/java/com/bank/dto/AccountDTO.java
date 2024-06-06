@@ -3,7 +3,9 @@ package com.bank.dto;
 import com.bank.enums.AccountStatus;
 import com.bank.enums.AccountType;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -22,7 +24,6 @@ public class AccountDTO {
     private AccountType accountType;
     private Date creationDate;
     @NotNull
-    @Positive
     private Long userId;
     private AccountStatus accountStatus;
 

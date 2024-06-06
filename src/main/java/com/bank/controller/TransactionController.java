@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 import java.util.logging.Logger;
 
 @Controller
@@ -33,7 +33,7 @@ public class TransactionController {
 
     @GetMapping("/make-transfer")
     public String getMakeTransfer(Model model) {
-        model.addAttribute("transaction", TransactionDTO.builder().build());
+        model.addAttribute("transaction", new TransactionDTO());
         model.addAttribute("accounts", accountService.listAllAccounts());
         model.addAttribute("lastTransactions", transactionService.last10Transactions());
         return "transaction/make-transfer";
@@ -47,8 +47,8 @@ public class TransactionController {
             logger.warning(bindingResult.getAllErrors().toString());
             return "transaction/make-transfer";
         }
-        AccountDTO sender = accountService.findById(transactionDTO.getSender());
-        AccountDTO receiver = accountService.findById(transactionDTO.getReceiver());
+        AccountDTO sender = accountService.findById(transactionDTO.getSender().getId());
+        AccountDTO receiver = accountService.findById(transactionDTO.getReceiver().getId());
         BigDecimal amount = transactionDTO.getAmount();
         Date createDate = new Date();
         String message = transactionDTO.getMessage();
@@ -57,7 +57,7 @@ public class TransactionController {
     }
 
     @GetMapping("/transactions/{id}")
-    public String getTransactions(@PathVariable UUID id, Model model) {
+    public String getTransactions(@PathVariable Long id, Model model) {
         List<TransactionDTO> transactionDTOListById = transactionService.findTransactionListById(id);
         model.addAttribute("transactions", transactionDTOListById);
         return "transaction/transactions";

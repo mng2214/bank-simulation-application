@@ -14,17 +14,17 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TransactionDTO {
-   // @NotNull
-    private Long sender;
-  //  @NotNull
-    private Long receiver;
-    @Positive
-    @NotNull
-    private BigDecimal amount;
-    @Size(min = 2, max = 255)
-    @Pattern(regexp = "^[a-zA-Z0-9]*$")
-    private String message;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date createDate;
+ // @NotNull
+  private AccountDTO sender;
+//  @NotNull
+  private AccountDTO receiver;
+  @Positive
+  @NotNull
+  private BigDecimal amount;
+  @NotNull
+  @Size(min = 2,max = 250)
+  @Pattern(regexp = "^[a-zA-Z0-9]*$")
+  private String message;
+  private Date createDate;
 
 }

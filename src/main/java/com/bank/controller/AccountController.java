@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Date;
-import java.util.UUID;
 import java.util.logging.Logger;
 
 @Controller
@@ -35,7 +34,7 @@ public class AccountController {
 
     @GetMapping("/create-form")
     public String getCreateFormPage(Model model) {
-        model.addAttribute("account", AccountDTO.builder().build());
+        model.addAttribute("account", new AccountDTO());
         model.addAttribute("accountTypes", AccountType.values());
         return "account/create-account";
     }
@@ -54,14 +53,14 @@ public class AccountController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteAccount(@PathVariable("id") UUID id) {
+    public String deleteAccount(@PathVariable("id") Long id) {
         logger.info("Deleted Account UD : " + id);
         accountService.deleteAccountById(id);
         return "redirect:/index";
     }
 
     @GetMapping("/activate/{id}")
-    public String activateAccount(@PathVariable("id") UUID id) {
+    public String activateAccount(@PathVariable("id") Long id) {
         logger.info("Activated Account UD : " + id);
         accountService.activateAccount(id);
         return "redirect:/index";
