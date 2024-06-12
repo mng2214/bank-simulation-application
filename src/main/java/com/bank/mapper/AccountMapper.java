@@ -16,26 +16,14 @@ public class AccountMapper {
         this.modelMapper = modelMapper;
     }
 
-
-
-    public Account toEntity(AccountDTO account) {
-        return modelMapper.map(account, Account.class);
+    public AccountDTO convertToDTO(Account entity){
+        //this method will accept Account entity and will convert it to DTO
+        return modelMapper.map(entity,AccountDTO.class);
     }
 
-    public AccountDTO toDto(Account account, Long id) {
-        return modelMapper.map(account, AccountDTO.class);
-    }
-
-    public List<Account> toEntity(List<AccountDTO> accountDTOs) {
-        return accountDTOs.stream()
-                .map(accountDTO -> modelMapper.map(accountDTO, Account.class))
-                .toList();
-    }
-
-    public List<AccountDTO> toDto(List<Account> accounts) {
-        return accounts.stream()
-                .map(account -> modelMapper.map(account, AccountDTO.class))
-                .toList();
+    public Account convertToEntity(AccountDTO dto){
+        //this method will accept dto and convert it to entity
+        return modelMapper.map(dto,Account.class);
     }
 
 

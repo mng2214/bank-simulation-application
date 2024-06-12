@@ -17,8 +17,6 @@ public interface AccountService {
 
     void activateAccount(Long id);
 
-    List<AccountDTO> getSenderAccounts();
-
     AccountDTO findById(Long id);
 }
 
