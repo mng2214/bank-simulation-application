@@ -11,24 +11,24 @@ import java.util.List;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
-//    // class will be representing db
 //    public static List<AccountDTO> accountDTOList = new ArrayList<>();
 //
-//    public AccountDTO save(AccountDTO accountDTO) {
+//    public AccountDTO save(AccountDTO accountDTO){
 //        accountDTOList.add(accountDTO);
 //        return accountDTO;
 //    }
 //
-//
-//    public List<AccountDTO> findAllAccounts() {
+//    public List<AccountDTO> findAll() {
 //        return accountDTOList;
 //    }
 //
 //    public AccountDTO findById(Long id) {
-//        return findAllAccounts().stream()
-//                .filter(account -> account.getId().equals(id))
-//                .findFirst()
-//                .orElseThrow(() -> new RecordNotFoundException("Account does not exist"));
+//        //TASK
+//        //complete the method, that find the account inside the account list,if not
+//        //throw RecordNotFoundException
+//        return accountDTOList.stream().filter(account -> account.getId().equals(id))
+//                .findAny().orElseThrow(()-> new RecordNotFoundException("Account does not exist in the database."));
+//
 //    }
 
 
