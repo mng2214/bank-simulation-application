@@ -33,16 +33,16 @@ public class TransactionController {
 
     @GetMapping("/make-transfer")
     public String getMakeTransfer(Model model) {
-        model.addAttribute("transaction", new TransactionDTO());
-        model.addAttribute("accounts", accountService.listAllAccounts());
+        model.addAttribute("transactionDTO", new TransactionDTO());
+        model.addAttribute("accounts", accountService.listAllActiveAccounts());
         model.addAttribute("lastTransactions", transactionService.last10Transactions());
         return "transaction/make-transfer";
     }
 
     @PostMapping("/transfer")
-    public String completeTransfer(@Valid @ModelAttribute("transaction") TransactionDTO transactionDTO, BindingResult bindingResult, Model model) {
+    public String completeTransfer(@Valid @ModelAttribute("transactionDTO") TransactionDTO transactionDTO, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("accounts", accountService.listAllAccounts());
+            model.addAttribute("accounts", accountService.listAllActiveAccounts());
             model.addAttribute("lastTransactions", transactionService.last10Transactions());
             logger.warning(bindingResult.getAllErrors().toString());
             return "transaction/make-transfer";

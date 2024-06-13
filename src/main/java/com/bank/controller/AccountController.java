@@ -30,19 +30,19 @@ public class AccountController {
 
     @GetMapping("/index")
     public String getIndexPage(Model model) {
-        model.addAttribute("accountList", accountService.listAllAccounts());
+        model.addAttribute("accountList", accountService.listAllActiveAccounts());
         return "account/index";
     }
 
     @GetMapping("/create-form")
     public String getCreateFormPage(Model model) {
-        model.addAttribute("account", new AccountDTO());
+        model.addAttribute("accountDTO", new AccountDTO());
         model.addAttribute("accountTypes", AccountType.values());
         return "account/create-account";
     }
 
     @PostMapping("/create")
-    public String saved(@Valid @ModelAttribute("account") AccountDTO accountDTO, BindingResult bindingResult, Model model) {
+    public String saved(@Valid @ModelAttribute("accountDTO") AccountDTO accountDTO, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("accountTypes", AccountType.values());
             logger.warning(bindingResult.getAllErrors().toString());
@@ -57,7 +57,7 @@ public class AccountController {
     @GetMapping("/delete/{id}")
     public String deleteAccount(@PathVariable("id") Long id) {
         logger.info("Deleted Account UD : " + id);
-        accountService.deleteAccountById(id);
+        accountService.deleteAccount(id);
         return "redirect:/index";
     }
 

@@ -7,10 +7,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Add User</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
-          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/shards.min.css">
 </head>
 <body>
@@ -32,8 +30,7 @@
 
                     <div class="form-group blu-margin">
                         <label for="balance" class="col-form-label">Balance</label>
-                        <input th:field="*{balance}" type="text" class="form-control" id="balance"
-                               placeholder="balance">
+                        <input th:field="*{balance}" type="text" class="form-control" id="balance" placeholder="balance">
                         <span th:if="${#fields.hasErrors('balance')}">
                                     <ul class="alert alert-danger">
                                         <li th:each="err :${#fields.errors('balance')}" th:text="${err}"></li>
@@ -43,10 +40,9 @@
 
                     <div class="form-group blu-margin">
                         <label for="dropOperator" class="col-form-label">Account Type</label>
-                        <select class="form-control" id="dropOperator" th:field="*{accountType}">
-                            <option th:value="''">Select Account</option>
-                            <option th:each="type :${accountTypes}" th:text="${type.name()}"
-                                    th:value="${type.name()}"></option>
+                        <select class="form-control"  id="dropOperator" th:field="*{accountType}">
+                            <option th:value="''">Select Account </option>
+                            <option th:each="type :${accountTypes}" th:text="${type.name()}" th:value="${type.name()}"></option>
                         </select>
                         <span th:if="${#fields.hasErrors('accountType')}">
                                     <ul class="alert alert-danger">

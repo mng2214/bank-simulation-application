@@ -22,8 +22,10 @@ import java.util.stream.Collectors;
 
 @Component
 public class TransactionServiceImpl implements TransactionService {
+
     @Value("${under_construction}")
     private boolean underConstruction;
+
     private final AccountService accountService;
     private final TransactionRepository transactionRepository;
     private final TransactionMapper transactionMapper;
@@ -33,7 +35,6 @@ public class TransactionServiceImpl implements TransactionService {
         this.transactionRepository = transactionRepository;
         this.transactionMapper = transactionMapper;
     }
-
 
     @Override
     public TransactionDTO makeTransfer(AccountDTO sender, AccountDTO receiver, BigDecimal amount, Date creationDate, String message) {
@@ -86,8 +87,6 @@ public class TransactionServiceImpl implements TransactionService {
         }else {
             throw new BalanceNotSufficientException("Balance is not enough for this transfer");
         }
-
-
     }
 
     private boolean checkSenderBalance(AccountDTO sender, BigDecimal amount) {
@@ -152,7 +151,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public List<TransactionDTO> findTransactionListById(Long id) {
         //get the list of transactions if account id is involved as a sender or receiver
-        List<Transaction> transactionList = transactionRepository.findTransactionListByAccountId(id);
+        List<Transaction> transactionList = transactionRepository.findAllByAccountId(id);
 
         //convert list of entity to dto and return it
         return transactionList.stream().map(transactionMapper::convertToDTO).collect(Collectors.toList());

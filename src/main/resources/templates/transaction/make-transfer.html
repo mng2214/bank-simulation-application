@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html>
+<html xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Users</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
-          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/shards.min.css">
 </head>
 <body>
@@ -17,55 +14,56 @@
     <div class="row">
         <div class="col-md-6">
             <div>
-                <form th:action="@{/transfer}" th:object="${transactionDTO}" method="post">
+                <form th:object="${transactionDTO}" method="post" th:action="@{/transfer}">
                     <div class="row">
                         <div class="form-group blu-margin">
                             <label for="sender" class="col-form-label">Sender</label>
-                            <select th:field="*{sender}" class="form-control" id="sender">
+                            <select class="form-control" id="sender" th:field="*{sender}">
                                 <option th:value="''">Select Account</option>
-                                <option th:each="accountDTO : ${accounts}" th:value="${accountDTO.id}"
-                                        th:text="${accountDTO.balance}+'-'+${accountDTO.userId}+'-'+${accountDTO.accountType.name()} " ></option>
+                                <option th:each="accountDTO: ${accounts}" th:value="${accountDTO.id}"
+                                        th:text="${accountDTO.balance}+'-'+${accountDTO.userId}+'-'+${accountDTO.accountType.name()}"></option>
                             </select>
                             <span th:if="${#fields.hasErrors('sender')}">
-                                    <ul class="alert alert-danger">
-                                        <li th:each="err :${#fields.errors('sender')}" th:text="${err}"></li>
-                                    </ul>
-                                </span>
+                                        <ul class="alert alert-danger">
+                                            <li th:each="err :${#fields.errors('sender')}" th:text="${err}"></li>
+                                        </ul>
+                                     </span>
                         </div>
 
                         <div class="form-group blu-margin">
                             <label for="receiver" class="col-form-label">Receiver</label>
-                            <select th:field="*{receiver}" class="form-control" id="receiver">
+                            <select class="form-control" id="receiver" th:field="*{receiver}">
                                 <option th:value="''">Select Account</option>
-                                <option th:each="accountDTO : ${accounts}" th:value="${accountDTO.id}"
-                                        th:text="${accountDTO.balance}+'-'+${accountDTO.userId}+'-'+${accountDTO.accountType.name()} " ></option>
+                                <option th:each="accountDTO: ${accounts}" th:value="${accountDTO.id}"
+                                        th:text="${accountDTO.balance}+'-'+${accountDTO.userId}+'-'+${accountDTO.accountType.name()}"></option>
                             </select>
                             <span th:if="${#fields.hasErrors('receiver')}">
-                                    <ul class="alert alert-danger">
-                                        <li th:each="err :${#fields.errors('receiver')}" th:text="${err}"></li>
-                                    </ul>
-                                </span>
+                                        <ul class="alert alert-danger">
+                                            <li th:each="err :${#fields.errors('receiver')}" th:text="${err}"></li>
+                                        </ul>
+                                     </span>
                         </div>
 
                         <div class="form-group blu-margin">
                             <label for="amount" class="col-form-label">Amount</label>
-                            <input th:field="*{amount}" type="text" class="form-control" id="amount" placeholder="Amount">
+                            <input type="text" class="form-control" id="amount" placeholder="Amount" th:field="*{amount}">
                             <span th:if="${#fields.hasErrors('amount')}">
-                                    <ul class="alert alert-danger">
-                                        <li th:each="err :${#fields.errors('amount')}" th:text="${err}"></li>
-                                    </ul>
-                                </span>
+                                        <ul class="alert alert-danger">
+                                            <li th:each="err :${#fields.errors('amount')}" th:text="${err}"></li>
+                                        </ul>
+                                     </span>
                         </div>
 
                         <div class="form-group blu-margin">
                             <label for="message" class="col-form-label">Message</label>
-                            <input th:field="*{message}" type="text" class="form-control" id="message" placeholder="Message">
+                            <input type="text" class="form-control" id="message" placeholder="Message" th:field="*{message}">
                             <span th:if="${#fields.hasErrors('message')}">
-                                    <ul class="alert alert-danger">
-                                        <li th:each="err :${#fields.errors('message')}" th:text="${err}"></li>
-                                    </ul>
+                                        <ul class="alert alert-danger">
+                                            <li th:each="err :${#fields.errors('message')}" th:text="${err}"></li>
+                                        </ul>
                                 </span>
                         </div>
+
                     </div>
                     <div class="row">
                         <div class="col-md-6 my-5">
@@ -87,8 +85,8 @@
                     </thead>
                     <tbody>
                     <tr th:each="lTransaction : ${lastTransactions}" >
-                        <td th:text="${lTransaction.getSender()}"></td>
-                        <td th:text="${lTransaction.getReceiver()}"></td>
+                        <td th:text="${lTransaction.getSender().id}"></td>
+                        <td th:text="${lTransaction.getReceiver().id}"></td>
                         <td th:text="${lTransaction.getAmount()}"></td>
                         <td th:text="${lTransaction.getCreateDate()}"></td>
                         <td th:text="${lTransaction.getMessage()}"></td>
