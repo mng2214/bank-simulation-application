@@ -126,7 +126,6 @@ public class TransactionServiceImpl implements TransactionService {
 
         findAccountById(sender.getId());
         findAccountById(receiver.getId());
-
     }
 
     private void findAccountById(Long id) {
@@ -151,10 +150,8 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public List<TransactionDTO> findTransactionListById(Long id) {
         //get the list of transactions if account id is involved as a sender or receiver
-        List<Transaction> transactionList = transactionRepository.findAllByAccountId(id);
-
+        List<Transaction> transactionList = transactionRepository.findTransactionListByAccountId(id);
         //convert list of entity to dto and return it
         return transactionList.stream().map(transactionMapper::convertToDTO).collect(Collectors.toList());
-
     }
 }
