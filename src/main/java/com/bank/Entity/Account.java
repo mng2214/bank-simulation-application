@@ -16,7 +16,8 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity(name = "accounts")
+@Entity
+@Table(name = "accounts")
 public class Account {
 
     @Id
