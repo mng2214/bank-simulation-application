@@ -12,18 +12,21 @@ import java.util.List;
 @Component
 public class TransactionMapper {
 
+
     private final ModelMapper modelMapper;
 
     public TransactionMapper(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
     }
 
-    public Transaction toEntity(TransactionDTO account) {
-        return modelMapper.map(account, Transaction.class);
+    public TransactionDTO convertToDTO(Transaction entity){
+        //this method will accept Account entity and will convert it to DTO
+        return modelMapper.map(entity,TransactionDTO.class);
     }
 
-    public TransactionDTO toDto(Transaction account, Long id) {
-        return modelMapper.map(account, TransactionDTO.class);
+    public Transaction convertToEntity(TransactionDTO dto){
+        //this method will accept dto and convert it to entity
+        return modelMapper.map(dto,Transaction.class);
     }
 
     public List<Transaction> toEntity(List<TransactionDTO> accountDTOs) {

@@ -46,7 +46,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void deleteAccountById(Long id) {
+    public void deleteAccount(Long id) {
         //find the account belongs the id
         Account account = accountRepository.findById(id).get();
         //set status to deleted
@@ -71,5 +71,18 @@ public class AccountServiceImpl implements AccountService {
         return accountMapper.convertToDTO(accountRepository.findById(id).get());
     }
 
+    @Override
+    public List<AccountDTO> listAllActiveAccounts() {
+
+        //list of active accounts from the repository
+        List<Account> accountList = accountRepository.findAllByAccountStatus(AccountStatus.ACTIVE);
+        //convert active accounts to accountDtos and return it
+        return accountList.stream().map(accountMapper::convertToDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public void updateAccount(AccountDTO accountDTO) {
+        accountRepository.save(accountMapper.convertToEntity(accountDTO));
+    }
 
 }

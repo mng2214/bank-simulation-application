@@ -36,7 +36,4 @@ public class Account {
     @Enumerated(EnumType.STRING)
     private AccountStatus accountStatus;
 
-    private boolean isDeleted;
-
-
 }

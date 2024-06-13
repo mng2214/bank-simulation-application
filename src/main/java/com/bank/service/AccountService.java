@@ -1,10 +1,8 @@
 package com.bank.service;
 
+import com.bank.Entity.Account;
 import com.bank.dto.AccountDTO;
-import com.bank.enums.AccountType;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 public interface AccountService {
@@ -13,10 +11,14 @@ public interface AccountService {
 
     List<AccountDTO> listAllAccounts();
 
-    void deleteAccountById(Long id);
+    void deleteAccount(Long id);
 
     void activateAccount(Long id);
 
     AccountDTO findById(Long id);
+
+    List<AccountDTO> listAllActiveAccounts();
+
+    void updateAccount(AccountDTO accountDTO);
 }
 

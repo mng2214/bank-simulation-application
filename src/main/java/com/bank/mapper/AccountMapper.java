@@ -1,7 +1,9 @@
 package com.bank.mapper;
 
 import com.bank.Entity.Account;
+import com.bank.Entity.Transaction;
 import com.bank.dto.AccountDTO;
+import com.bank.dto.TransactionDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
