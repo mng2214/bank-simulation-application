@@ -35,7 +35,9 @@ public class TransactionController {
         this.accountService = accountService;
         this.transactionService = transactionService;
     }
-
+// This is the error message I see
+    // Validation failed for query for method public abstract java.util.List com.bank.repository.TransactionRepository.findTransactionListByAccountId(java.lang.Long)
+    // Is this what you where mentioning about?
     @GetMapping("/make-transfer")
     public String getMakeTransfer(Model model) {
         model.addAttribute("transactionDTO", new TransactionDTO());
