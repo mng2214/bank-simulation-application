@@ -1,18 +1,15 @@
 package com.bank.service.impl;
 
-import com.bank.Entity.Account;
+import com.bank.entity.Account;
 import com.bank.dto.AccountDTO;
 import com.bank.enums.AccountStatus;
-import com.bank.enums.AccountType;
 import com.bank.mapper.AccountMapper;
 import com.bank.repository.AccountRepository;
 import com.bank.service.AccountService;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component

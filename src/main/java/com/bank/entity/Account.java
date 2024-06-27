@@ -1,9 +1,8 @@
-package com.bank.Entity;
+package com.bank.entity;
 
 import com.bank.enums.AccountStatus;
 import com.bank.enums.AccountType;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

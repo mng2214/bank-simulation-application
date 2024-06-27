@@ -1,14 +1,11 @@
 package com.bank.service.impl;
 
-import com.bank.Entity.Account;
-import com.bank.Entity.Transaction;
+import com.bank.entity.Transaction;
 import com.bank.dto.AccountDTO;
 import com.bank.enums.AccountType;
 import com.bank.exception.*;
 import com.bank.dto.TransactionDTO;
-import com.bank.mapper.AccountMapper;
 import com.bank.mapper.TransactionMapper;
-import com.bank.repository.AccountRepository;
 import com.bank.repository.TransactionRepository;
 import com.bank.service.AccountService;
 import com.bank.service.TransactionService;

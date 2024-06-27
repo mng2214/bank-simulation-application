@@ -1,6 +1,5 @@
 package com.bank.service;
 
-import com.bank.Entity.Account;
 import com.bank.dto.AccountDTO;
 
 import java.util.List;

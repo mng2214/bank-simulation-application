@@ -1,6 +1,6 @@
 package com.bank.repository;
 
-import com.bank.Entity.Transaction;
+import com.bank.entity.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
